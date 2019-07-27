@@ -1,16 +1,42 @@
-<?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
-<?php $this->need('header.php'); ?>
+<?php
+if (!defined('__TYPECHO_ROOT_DIR__')) exit;
+$this->need('header.php');
+?>
+    <body>
+        <div class="content index width mx-auto px3 my4">
+            <header id="header">
+                <a href="<?php $this->options->siteUrl();?>">
+                     <div id="logo" style="background-image: url(<?php if($this->options->logoimg): ?><?php $this->options->logoimg();?><?php else : ?><?php $this->options->themeUrl('images/logo.png'); ?><?php endif; ?>);"></div>
+					</a>
+                    <div id="title">
+                        <h1><?php $this->options->title(); ?></h1>
+                    </div>
 
-    <div class="col-mb-12 col-tb-8 col-tb-offset-2">
-
-        <div class="error-page">
-            <h2 class="post-title">404 - <?php _e('页面没找到'); ?></h2>
-            <p><?php _e('你想查看的页面已被转移或删除了, 要不要搜索看看: '); ?></p>
-            <form method="post">
-                <p><input type="text" name="s" class="text" autofocus /></p>
-                <p><button type="submit" class="submit"><?php _e('搜索'); ?></button></p>
-            </form>
+                <div id="nav">
+                    <ul>
+                        <li class="icon">
+                            <a href="#">
+                                <i class="fa fa-bars fa-2x"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php $this->options->siteUrl();?>">Home</a>
+                        </li>
+                        <?php $this->widget('Widget_Contents_Page_List')->parse('<li><a href="{permalink}">{title}</a></li>'); ?>
+                        <?php if($this->options->github): ?>
+						<li>
+                         <a href="<?php $this->options->github();?>" target="_blank">Github</a>
+                        </li><?php endif; ?>
+                    </ul>
+                </div>
+            </header>
+            <section id="wrapper" class="home">
+                <section id="about">
+                    <div class="description coding">
+                        <span class="typed prompt">[root@<?php $this->options->title(); ?>]# echo url<br/>> 404 - <?php _e('页面没找到'); ?> </span>
+                    </div>
+                </section>       
+            </section>
         </div>
-
-    </div><!-- end #content-->
-	<?php $this->need('footer.php'); ?>
+		
+ <?php $this->need('footer.php'); ?>
